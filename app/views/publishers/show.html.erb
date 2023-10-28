@@ -9,9 +9,8 @@
 <br/>
 
 <%# Filter Search and Pagination navbar %>
-<div class="container-md">
   <div class="row">
-    <div class="col-md-7">
+    <div class="col">
       <%= form_tag "/publishers/#{params[:id]}", method: :get do %>
         <%= select_tag :author_id, options_from_collection_for_select(@writer, 'id', "first_name"), include_blank: "Author" %>
         <%= submit_tag "Search"%>
@@ -25,21 +24,20 @@
         <p><%= link_to "Clear Filter", "/publishers/#{params[:id]}" %></p>
       <% end %>
     </div>
-    <div class="col-md-5 float-end"><%= paginate @comic_result %></div>
+    <div class="col d-flex flex-row-reverse"><%= paginate @comic_result %></div>
   </div>
-</div>
 
 <%# Published Comics in the collection %>
 <table class="table table-sm">
   <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Release</th>
-        <th scope="col">Price</th>
-        <th scope="col">Writer</th>
-        <th scope="col">Edition</th>
-        <th scope="col">Format</th>
-      </tr>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Release</th>
+      <th scope="col">Price</th>
+      <th scope="col">Writer</th>
+      <th scope="col">Edition</th>
+      <th scope="col">Format</th>
+    </tr>
   </thead>
   <tbody class="table-group-divider">
     <% @comic_result.each do |comic| %>

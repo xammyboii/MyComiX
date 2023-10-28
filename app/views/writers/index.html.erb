@@ -1,7 +1,10 @@
 <h1>Writers</h1>
 <p>Writers in the collection</p>
 
-<%= paginate @writers %>
+<div class="d-flex flex-row-reverse">
+  <%= paginate @writers %>
+</div>
+
 <table class="table table-sm">
   <thead>
       <tr>
@@ -9,13 +12,12 @@
         <th scope="col"># of Comics in Collection</th>
       </tr>
   </thead>
-      <tbody class="table-group-divider">
-       <%@writers.each do |writer|%>
+  <tbody class="table-group-divider">
+    <% @writers.each do |writer| %>
       <tr>
-        <td><%=link_to writer.first_name + " " + writer.last_name, writer%></td>
-        <td><%=writer.comics.count%></td>
+        <td><%= link_to writer.first_name + " " + writer.last_name, writer %></td>
+        <td><%= writer.comics.count %></td>
       </tr>
-      <%end%>
-     </tbody>
-
+    <% end %>
+  </tbody>
 </table>

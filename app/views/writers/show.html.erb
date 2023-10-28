@@ -1,7 +1,10 @@
-<h1><%=@writer.first_name + " " + @writer.last_name%></h1>
-<p>List of comics he has worked on</p>
+<h1><%= @writer.first_name + " " + @writer.last_name %></h1>
+<p>List of comics <%= @writer.first_name + " " + @writer.last_name %> has worked on.</p>
 
-<%= paginate @comic_result %>
+<div class="d-flex flex-row-reverse">
+  <%= paginate @comic_result %>
+</div>
+
 <table class="table table-sm">
   <thead>
       <tr>
@@ -13,21 +16,20 @@
         <th scope="col">Format</th>
       </tr>
   </thead>
-      <tbody class="table-group-divider"></tbody>
+    <tbody class="table-group-divider">
       <% @comic_result.each do |comic| %>
-      <tr>
-        <td><%= link_to comic.title, comic %></td>
-        <td><%= comic.release_date %></td>
-        <% if comic.cover_price.nil? %>
-          <td><em>n/a</em></td>
-        <% else %>
-          <td>$<%= comic.cover_price %></td>
-        <% end %>
-        <td><%= link_to comic.writer.first_name + " " + comic.writer.last_name, "/writers/" + comic.writer_id.to_s %></td>
-        <td><%= comic.edition.edition %></td>
-        <td><%= comic.format.format %></td>
-      </tr>
+        <tr>
+          <td><%= link_to comic.title, comic %></td>
+          <td><%= comic.release_date %></td>
+          <% if comic.cover_price.nil? %>
+            <td><em>n/a</em></td>
+          <% else %>
+            <td>$<%= comic.cover_price %></td>
+          <% end %>
+          <td><%= link_to comic.writer.first_name + " " + comic.writer.last_name, "/writers/" + comic.writer_id.to_s %></td>
+          <td><%= comic.edition.edition %></td>
+          <td><%= comic.format.format %></td>
+        </tr>
       <% end %>
-     </tbody>
-
+    </tbody>
 </table>
